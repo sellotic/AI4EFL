@@ -30,6 +30,8 @@
                 <img src="https://roxanarebolledo.com/ai4efl/logo-ai4efl.png" alt="Logo AI4EFL" class="h-10">
                 <h1 class="text-xl font-bold text-cyan-600" data-translate="nav_title">AI4EFL 2025</h1>
             </a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#que-es" class="text-gray-600 hover:text-cyan-600 transition duration-300" data-translate="nav_what_is">What it is</a>
                 <a href="#metodologia" class="text-gray-600 hover:text-cyan-600 transition duration-300" data-translate="nav_methodology">Methodology</a>
@@ -37,14 +39,43 @@
                 <a href="#publicaciones" class="text-gray-600 hover:text-cyan-600 transition duration-300" data-translate="nav_publications">Publications</a>
                 <a href="#docentes" class="text-gray-600 hover:text-cyan-600 transition duration-300" data-translate="nav_teachers">Teachers</a>
                 
-                <!-- Language Selector -->
                 <div class="flex items-center space-x-2 ml-6">
-                    <button id="lang-es" class="bg-gray-200 text-gray-700 hover:bg-cyan-200 text-xs font-bold px-3 py-1 rounded-full transition-colors duration-300" title="Español">ES</button>
-                    <button id="lang-en" class="bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full cursor-default" title="English">EN</button>
-                    <button id="lang-ca" class="bg-gray-200 text-gray-700 hover:bg-cyan-200 text-xs font-bold px-3 py-1 rounded-full transition-colors duration-300" title="Català">CA</button>
+                    <button id="lang-es-desktop" class="bg-gray-200 text-gray-700 hover:bg-cyan-200 text-xs font-bold px-3 py-1 rounded-full transition-colors duration-300" title="Español">ES</button>
+                    <button id="lang-en-desktop" class="bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full cursor-default" title="English">EN</button>
+                    <button id="lang-ca-desktop" class="bg-gray-200 text-gray-700 hover:bg-cyan-200 text-xs font-bold px-3 py-1 rounded-full transition-colors duration-300" title="Català">CA</button>
                 </div>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-cyan-600 focus:outline-none">
+                    <svg id="menu-open-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                    <svg id="menu-close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
         </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                 <a href="#que-es" class="block text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 px-3 py-2 rounded-md text-base font-medium" data-translate="nav_what_is">What it is</a>
+                <a href="#metodologia" class="block text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 px-3 py-2 rounded-md text-base font-medium" data-translate="nav_methodology">Methodology</a>
+                <a href="#herramientas" class="block text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 px-3 py-2 rounded-md text-base font-medium" data-translate="nav_tools">Tools</a>
+                <a href="#publicaciones" class="block text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 px-3 py-2 rounded-md text-base font-medium" data-translate="nav_publications">Publications</a>
+                <a href="#docentes" class="block text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 px-3 py-2 rounded-md text-base font-medium" data-translate="nav_teachers">Teachers</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="flex justify-center items-center space-x-4">
+                     <button id="lang-es-mobile" class="bg-gray-200 text-gray-700 hover:bg-cyan-200 text-xs font-bold px-4 py-2 rounded-full transition-colors duration-300" title="Español">ES</button>
+                     <button id="lang-en-mobile" class="bg-cyan-600 text-white text-xs font-bold px-4 py-2 rounded-full cursor-default" title="English">EN</button>
+                     <button id="lang-ca-mobile" class="bg-gray-200 text-gray-700 hover:bg-cyan-200 text-xs font-bold px-4 py-2 rounded-full transition-colors duration-300" title="Català">CA</button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -409,64 +440,114 @@
             }
         };
 
-        const langEsBtn = document.getElementById('lang-es');
-        const langEnBtn = document.getElementById('lang-en');
-        const langCaBtn = document.getElementById('lang-ca');
-        const presentationEs = document.getElementById('presentation-es');
-        const presentationCa = document.getElementById('presentation-ca');
-        const presentationEn = document.getElementById('presentation-en');
+        document.addEventListener('DOMContentLoaded', () => {
+            const langEsBtnDesktop = document.getElementById('lang-es-desktop');
+            const langEnBtnDesktop = document.getElementById('lang-en-desktop');
+            const langCaBtnDesktop = document.getElementById('lang-ca-desktop');
+            const langEsBtnMobile = document.getElementById('lang-es-mobile');
+            const langEnBtnMobile = document.getElementById('lang-en-mobile');
+            const langCaBtnMobile = document.getElementById('lang-ca-mobile');
 
-        const translatePage = (lang) => {
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.dataset.translate;
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
+            const presentationEs = document.getElementById('presentation-es');
+            const presentationCa = document.getElementById('presentation-ca');
+            const presentationEn = document.getElementById('presentation-en');
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+
+            const translatePage = (lang) => {
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    const key = el.dataset.translate;
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+                document.documentElement.lang = lang;
+                document.title = (lang === 'es') ? 'Proyecto AI4EFL 2025' : 'AI4EFL 2025 Project';
+
+
+                presentationEs.classList.add('hidden');
+                presentationCa.classList.add('hidden');
+                presentationEn.classList.add('hidden');
+
+                if (lang === 'en') {
+                    presentationEn.classList.remove('hidden');
+                } else if (lang === 'ca') {
+                    presentationCa.classList.remove('hidden');
+                } else {
+                    presentationEs.classList.remove('hidden');
                 }
-            });
-            document.documentElement.lang = lang;
 
-            // Show/hide presentation based on language
-            presentationEs.classList.add('hidden');
-            presentationCa.classList.add('hidden');
-            presentationEn.classList.add('hidden');
+                const activeClasses = ['bg-cyan-600', 'text-white', 'cursor-default'];
+                const inactiveClasses = ['bg-gray-200', 'text-gray-700', 'hover:bg-cyan-200'];
+                
+                const allDesktopButtons = [langEsBtnDesktop, langEnBtnDesktop, langCaBtnDesktop];
+                const allMobileButtons = [langEsBtnMobile, langEnBtnMobile, langCaBtnMobile];
+                
+                allDesktopButtons.forEach(btn => {
+                    btn.classList.remove(...activeClasses);
+                    btn.classList.add(...inactiveClasses);
+                });
+                 allMobileButtons.forEach(btn => {
+                    btn.classList.remove(...activeClasses);
+                    btn.classList.add(...inactiveClasses);
+                });
+                
+                if (lang === 'es') {
+                    langEsBtnDesktop.classList.remove(...inactiveClasses);
+                    langEsBtnDesktop.classList.add(...activeClasses);
+                    langEsBtnMobile.classList.remove(...inactiveClasses);
+                    langEsBtnMobile.classList.add(...activeClasses);
+                } else if (lang === 'en') {
+                    langEnBtnDesktop.classList.remove(...inactiveClasses);
+                    langEnBtnDesktop.classList.add(...activeClasses);
+                    langEnBtnMobile.classList.remove(...inactiveClasses);
+                    langEnBtnMobile.classList.add(...activeClasses);
+                } else if (lang === 'ca') {
+                    langCaBtnDesktop.classList.remove(...inactiveClasses);
+                    langCaBtnDesktop.classList.add(...activeClasses);
+                    langCaBtnMobile.classList.remove(...inactiveClasses);
+                    langCaBtnMobile.classList.add(...activeClasses);
+                }
+            };
 
-            if (lang === 'en') {
-                presentationEn.classList.remove('hidden');
-            } else if (lang === 'ca') {
-                presentationCa.classList.remove('hidden');
-            } else { // 'es' is the default
-                presentationEs.classList.remove('hidden');
-            }
-
-
-            // Update button styles
-            const activeClasses = ['bg-cyan-600', 'text-white', 'cursor-default'];
-            const inactiveClasses = ['bg-gray-200', 'text-gray-700', 'hover:bg-cyan-200', 'transition-colors', 'duration-300'];
+            const setupLangButton = (btn, lang) => {
+                btn.addEventListener('click', () => {
+                    translatePage(lang);
+                    if (mobileMenu.classList.contains('hidden') === false) {
+                        mobileMenu.classList.add('hidden');
+                        menuOpenIcon.classList.remove('hidden');
+                        menuCloseIcon.classList.add('hidden');
+                    }
+                });
+            };
             
-            [langEsBtn, langEnBtn, langCaBtn].forEach(btn => {
-                btn.classList.remove(...activeClasses, ...inactiveClasses);
+            setupLangButton(langCaBtnDesktop, 'ca');
+            setupLangButton(langEsBtnDesktop, 'es');
+            setupLangButton(langEnBtnDesktop, 'en');
+            setupLangButton(langCaBtnMobile, 'ca');
+            setupLangButton(langEsBtnMobile, 'es');
+            setupLangButton(langEnBtnMobile, 'en');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
             });
             
-            if (lang === 'es') {
-                langEsBtn.classList.add(...activeClasses);
-                langEnBtn.classList.add(...inactiveClasses);
-                langCaBtn.classList.add(...inactiveClasses);
-            } else if (lang === 'en') {
-                 langEnBtn.classList.add(...activeClasses);
-                 langEsBtn.classList.add(...inactiveClasses);
-                 langCaBtn.classList.add(...inactiveClasses);
-            }
-            else if (lang === 'ca') {
-                langCaBtn.classList.add(...activeClasses);
-                langEsBtn.classList.add(...inactiveClasses);
-                langEnBtn.classList.add(...inactiveClasses);
-            }
-        };
-        
-        langCaBtn.addEventListener('click', () => translatePage('ca'));
-        langEsBtn.addEventListener('click', () => translatePage('es'));
-        langEnBtn.addEventListener('click', () => translatePage('en'));
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuOpenIcon.classList.remove('hidden');
+                    menuCloseIcon.classList.add('hidden');
+                });
+            });
 
+            // Set initial language
+            translatePage('en');
+        });
     </script>
 </body>
 
