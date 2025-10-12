@@ -173,7 +173,7 @@
 
 <div class="my-8">
   <h3 class="text-3xl font-bold text-center text-gray-900 mb-6" data-translate="sequence_title">Work Sequence 2025</h3>
-  <img src="https://roxanarebolledo.com/ai4efl/sequence2025.png"
+  <img id="sequence-image" src="https://roxanarebolledo.com/ai4efl/sequence2025.png"
        alt="Sequence AI4EFL 2025"
        class="max-w-full h-auto rounded-xl shadow-lg mx-auto block" />
 </div>
@@ -420,7 +420,7 @@
                 methodology_li3: "Strategic use of <strong>specific tools</strong> for each stage of the essay.",
                 redesign_text: "Review the improvements to be applied in this second version.",
                 redesign_button: "Read training proposal redesign",
-                sequence_title: "Work Sequence 2025",
+                sequence_title: "Session sequence 2025",
                 tools_title: "AI Tools Used",
                 tools_p1: "While these systems are not exclusively for developing writing skills, they are used for pedagogical and didactic purposes, guiding activities so that students can develop this competence in a personalized and tailored way.",
                 results_2024_title: "See the results of the 2024 version",
@@ -451,6 +451,7 @@
             const presentationEs = document.getElementById('presentation-es');
             const presentationCa = document.getElementById('presentation-ca');
             const presentationEn = document.getElementById('presentation-en');
+            const sequenceImage = document.getElementById('sequence-image');
 
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -467,6 +468,18 @@
                 document.documentElement.lang = lang;
                 document.title = (lang === 'es') ? 'Proyecto AI4EFL 2025' : 'AI4EFL 2025 Project';
 
+
+                // update sequence image
+                if (lang === 'en') {
+                    sequenceImage.src = 'https://roxanarebolledo.com/ai4efl/sequence-en.png';
+                    sequenceImage.alt = 'Session sequence AI4EFL 2025';
+                } else if (lang === 'ca') {
+                    sequenceImage.src = 'https://roxanarebolledo.com/ai4efl/sequence-ca.png';
+                    sequenceImage.alt = 'Seqüència de treball AI4EFL 2025';
+                } else {
+                    sequenceImage.src = 'https://roxanarebolledo.com/ai4efl/sequence2025.png';
+                    sequenceImage.alt = 'Secuencia de trabajo AI4EFL 2025';
+                }
 
                 presentationEs.classList.add('hidden');
                 presentationCa.classList.add('hidden');
@@ -552,4 +565,5 @@
 </body>
 
 </html>
+
 
