@@ -90,9 +90,9 @@
                 Enhancing English essay writing with adaptive Artificial Intelligence.
             </p>
             <div class="text-center my-8">
-              <img src="https://roxanarebolledo.com/ai4efl/logo-ai4efl.png" 
-                   alt="Logo AI4EFL" 
-                   class="max-w-[220px] w-full h-auto inline-block" />
+              <img src="https://roxanarebolledo.com/ai4efl/essay-writing.gif" 
+                   alt="AI-assisted essay writing process GIF" 
+                   class="max-w-md w-full h-auto inline-block rounded-lg shadow-md" />
             </div>
             
             <!-- Audio/Video Player Section -->
@@ -173,7 +173,7 @@
 
 <div class="my-8">
   <h3 class="text-3xl font-bold text-center text-gray-900 mb-6" data-translate="sequence_title">Work Sequence 2025</h3>
-  <img id="sequence-image" src="https://roxanarebolledo.com/ai4efl/sequence2025.png"
+  <img id="sequence-image" src="https://roxanarebolledo.com/ai4efl/sequence-en.png"
        alt="Sequence AI4EFL 2025"
        class="max-w-full h-auto rounded-xl shadow-lg mx-auto block" />
 </div>
@@ -313,6 +313,9 @@
     <footer class="bg-white mt-16 border-t">
         <div class="container mx-auto px-6 py-4 text-center text-gray-500">
             <p data-translate="footer_text">&copy; 2025 AI4EFL Project. All rights reserved.</p>
+            <div class="mt-2">
+                <a id="ethical-approval-link" href="#" target="_blank" rel="noopener noreferrer" class="text-sm text-cyan-600 hover:underline" data-translate="ethical_approval">Ethical Approval CEIPSA 2025</a>
+            </div>
         </div>
     </footer>
 
@@ -356,7 +359,8 @@
                 teachers_p1: "Se recomienda enfocar la propuesta como una herramienta para potenciar un <strong>aprendizaje más personalizado</strong>, apoyado en tecnología de última generación. Esta metodología guía a los estudiantes en cada etapa de la escritura, proporciona <strong>retroalimentación inmediata</strong> y fomenta tanto el desarrollo de habilidades lingüísticas como el <strong>pensamiento crítico</strong>.",
                 universities_title: "Universidades participantes",
                 register_title: "Inscríbete con el/la colaborador/a a cargo de tu universidad",
-                footer_text: "&copy; 2025 Proyecto AI4EFL. Todos los derechos reservados."
+                footer_text: "&copy; 2025 Proyecto AI4EFL. Todos los derechos reservados.",
+                ethical_approval: "Aprobación Ética CEIPSA 2025"
             },
             ca: {
                 nav_title: "AI4EFL 2025",
@@ -396,7 +400,8 @@
                 teachers_p1: "Es recomana enfocar la proposta com una eina per potenciar un <strong>aprenentatge més personalitzat</strong>, recolzat en tecnologia d'última generació. Aquesta metodologia guia els estudiants en cada etapa de l'escriptura, proporciona <strong>retroalimentació immediata</strong> i fomenta tant el desenvolupament d'habilitats lingüístiques com el <strong>pensament crític</strong>.",
                 universities_title: "Universitats participants",
                 register_title: "Inscriu-te amb el/la col·laborador/a a càrrec de la teva universitat",
-                footer_text: "&copy; 2025 Projecte AI4EFL. Tots els drets reservats."
+                footer_text: "&copy; 2025 Projecte AI4EFL. Tots els drets reservats.",
+                ethical_approval: "Aprovació Ètica CEIPSA 2025"
             },
              en: {
                 nav_title: "AI4EFL 2025",
@@ -436,7 +441,8 @@
                 teachers_p1: "It is recommended to focus the proposal as a tool to promote <strong>more personalized learning</strong>, supported by state-of-the-art technology. This methodology guides students at each stage of writing, provides <strong>immediate feedback</strong>, and fosters the development of both language skills and <strong>critical thinking</strong>.",
                 universities_title: "Participating Universities",
                 register_title: "Register with the collaborator in charge at your university",
-                footer_text: "&copy; 2025 AI4EFL Project. All rights reserved."
+                footer_text: "&copy; 2025 AI4EFL Project. All rights reserved.",
+                ethical_approval: "Ethical Approval CEIPSA 2025"
             }
         };
 
@@ -452,6 +458,13 @@
             const presentationCa = document.getElementById('presentation-ca');
             const presentationEn = document.getElementById('presentation-en');
             const sequenceImage = document.getElementById('sequence-image');
+            const ethicalApprovalLink = document.getElementById('ethical-approval-link');
+
+            const ethicalLinks = {
+                es: 'https://drive.google.com/file/d/1FXNuoBJalkiQr8x7_ownWHNndoRsPXL0/view?usp=drive_link',
+                en: 'https://drive.google.com/file/d/1wUXst0BgWyYzpxUXe-qOsqjqoWbtbGAY/view?usp=drive_link',
+                ca: 'https://drive.google.com/file/d/1LukEK-LfJ4z1cjMoalnoo3tCNeo7LQxr/view?usp=drive_link'
+            };
 
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -466,7 +479,7 @@
                     }
                 });
                 document.documentElement.lang = lang;
-                document.title = (lang === 'es') ? 'Proyecto AI4EFL 2025' : 'AI4EFL 2025 Project';
+                document.title = (lang === 'es') ? 'Proyecto AI4EFL 2025' : (lang === 'ca' ? 'Projecte AI4EFL 2025' : 'AI4EFL 2025 Project');
 
 
                 // update sequence image
@@ -476,9 +489,15 @@
                 } else if (lang === 'ca') {
                     sequenceImage.src = 'https://roxanarebolledo.com/ai4efl/sequence-ca.png';
                     sequenceImage.alt = 'Seqüència de treball AI4EFL 2025';
-                } else {
+                }
+                else {
                     sequenceImage.src = 'https://roxanarebolledo.com/ai4efl/sequence2025.png';
                     sequenceImage.alt = 'Secuencia de trabajo AI4EFL 2025';
+                }
+
+                // update ethical approval link
+                if (ethicalLinks[lang]) {
+                    ethicalApprovalLink.href = ethicalLinks[lang];
                 }
 
                 presentationEs.classList.add('hidden');
@@ -500,11 +519,11 @@
                 const allMobileButtons = [langEsBtnMobile, langEnBtnMobile, langCaBtnMobile];
                 
                 allDesktopButtons.forEach(btn => {
-                    btn.classList.remove(...activeClasses);
+                    btn.classList.remove(...activeClasses, ...inactiveClasses);
                     btn.classList.add(...inactiveClasses);
                 });
                  allMobileButtons.forEach(btn => {
-                    btn.classList.remove(...activeClasses);
+                    btn.classList.remove(...activeClasses, ...inactiveClasses);
                     btn.classList.add(...inactiveClasses);
                 });
                 
@@ -558,12 +577,11 @@
                 });
             });
 
-            // Set initial language
+            // Set initial language to English
             translatePage('en');
         });
     </script>
 </body>
 
 </html>
-
 
